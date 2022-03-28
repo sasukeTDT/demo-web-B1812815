@@ -134,8 +134,8 @@ io.on('connection', (socket) => {
 
     });
 });
-//'127.0.0.1',
-server.listen(port, () => {
+
+server.listen(port, '127.0.0.1', () => {
     console.log(`Socket.IO server running at http://localhost:${port}/`);
 });
 
