@@ -1,1 +1,1 @@
-web: node main_reg.js
+web: node ./main_reg.js
