@@ -1,6 +1,26 @@
 {
-    "name": "demo-web-b1812815",
-    "version": "1.0.0",
-    "description": "Demo web",
-    "main": "main_reg.js"
+  "name": "demo_full",
+  "version": "1.0.0",
+  "description": "This example is so cool.",
+  "main": "main_reg.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql": "^2.18.1",
+    "request": "^2.88.2",
+    "socket.io": "^4.3.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sasukeTDT/demo-web-B1812815.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sasukeTDT/demo-web-B1812815/issues"
+  },
+  "homepage": "https://github.com/sasukeTDT/demo-web-B1812815#readme"
 }
