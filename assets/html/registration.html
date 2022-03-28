@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Register - Brand</title>
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+    <link rel="stylesheet" href="../css/vanilla-zoom.min.css">
+    <link rel="stylesheet" href="../css/mycss.css">
+
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">       
+        <div class="container"><a class="navbar-brand logo" href="#"></a><button data-bs-toggle="collapse"
+                class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <img src="../image/ctu.png" alt="logo" width="70" height="70">
+                <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="/">Nhập Thông Tin</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/ft">Danh sách sinh viên</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/fd">Tra cứu</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main class="page registration-page">
+        <section class="clean-block clean-form dark">
+            <div class="container">
+                <div class="block-heading">
+                    <h2 class="text-info">Thông tin sinh viên</h2>
+                    <p>Cổng thông tin sinh viên Đại học Cần Thơ.</p>
+                </div>
+                <form>
+                    <div class="mb-3"><label class="form-label" for="name">Họ và tên</label><input class="form-control item" type="text" id="name"></div>
+                    <div class="mb-3"><label class="form-label" for="mssv">Mã số sinh viên</label><input class="form-control item" type="text" id="mssv"></div>
+                    <div class="mb-3"><label class="form-label" for="ngaysinh">Ngày sinh</label><input class="form-control item" type="text" id="ngaysinh"></div>
+                    <div class="mb-3"><label class="form-label" for="gioitinh">Giới tính</label>
+                        <select id="gioitinh" name="gioitinh">
+                            <option value="Nam">Nam</option>
+                            <option value="Nữ">Nữ</option>
+                        </select>
+                    </div>
+                    <div class="mb-3"><label class="form-label" for="nganh">Ngành</label><input class="form-control item" type="text" id="nganh"></div>
+                    <div class="mb-3"><label class="form-label" for="diachi">Địa chỉ</label><input class="form-control item" type="text" id="diachi"></div>
+                    <div class="mb-3"><label class="form-label" for="email">Email</label><input class="form-control item" type="text" id="email"></div>   
+                    <button class="btn btn-primary" type="button" onclick="save_info()">Save </button>   
+                    <a class="btn btn-primary" href="/">Restart </a>      
+                </form>
+            </div>
+        </section>
+    </main>
+    <footer class="page-footer dark">
+        <div class="footer-copyright">
+            <p>Can Tho University</p>
+        </div>
+    </footer>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+    <script src="../js/vanilla-zoom.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/registration.js"></script>
+</body>
+
+</html>
