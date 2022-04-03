@@ -43,45 +43,36 @@ io.on('connection', (socket) => {
         let info = JSON.parse(arg);
         console.log(info.name);
 
-        var mysql = require('mysql');
+        var MongoClient = require('mongodb').MongoClient;
+        //var url = "mongodb+srv://b1812815:AIn59P3CRrQ1ASHe@web-b1812815.dtn9n.mongodb.net/web-b1812815?retryWrites=true&w=majority";
+        var url = "mongodb://localhost:27017/";
 
-        var con = mysql.createConnection({
-            host: "localhost",
-            user: "root",
-            password: "",
-            database: "info_db"
-        });
-
-        con.connect(function (err) {
+        MongoClient.connect(url, function (err, db) {
             if (err) throw err;
-            console.log("Connected!");
-            var sql = "INSERT INTO student (name, mssv, ngaysinh, gioitinh, nganh, diachi, email) VALUES ('" + info.name + "','" + info.mssv + "','" + info.ngaysinh + "','" + info.gioitinh + "','" + info.nganh + "','" + info.diachi + "','" + info.email + "')";
-            con.query(sql, function (err, result) {
+            var dbo = db.db("web-b1812815");
+            var myobj = { name: info.name, mssv: info.mssv, ngaysinh: info.ngaysinh, gioitinh: info.gioitinh, nganh: info.nganh, diachi: info.diachi, email: info.email };
+            dbo.collection("student").insertOne(myobj, function (err, res) {
                 if (err) throw err;
-                console.log("1 record inserted");
+                console.log("1 document inserted");
+                db.close();
             });
         });
+
     });
 
     //hien thi danh sach sinh vien
     socket.on("fetch_data", (arg) => {
         console.log(arg);
 
-        var mysql = require('mysql');
-
-        var con = mysql.createConnection({
-            host: "localhost",
-            user: "root",
-            password: "",
-            database: "info_db"
-        });
-
+        var MongoClient = require('mongodb').MongoClient;
+        //var url = "mongodb+srv://b1812815:AIn59P3CRrQ1ASHe@web-b1812815.dtn9n.mongodb.net/web-b1812815?retryWrites=true&w=majority";
+        var url = "mongodb://localhost:27017/";
         var result_object = [];
-        //var result_str;
 
-        con.connect(function (err) {
+        MongoClient.connect(url, function (err, db) {
             if (err) throw err;
-            con.query("SELECT * FROM student", function (err, result, fields) {
+            var dbo = db.db("web-b1812815");
+            dbo.collection("student").find({}).toArray(function (err, result) {
                 if (err) throw err;
                 //console.log(result);
                 result.forEach(element => {
@@ -90,7 +81,7 @@ io.on('connection', (socket) => {
 
                 //result_str = JSON.stringify(result_object);
                 socket.emit("student_list", result_object);
-
+                db.close();
             });
         });
 
@@ -98,30 +89,22 @@ io.on('connection', (socket) => {
 
     // tim sinh vien theo mssv
     socket.on("find_student", (mssv, name, tinh) => {
-       // console.log(arg);
-        var mysql = require('mysql');
-
-        var con = mysql.createConnection({
-            host: "localhost",
-            user: "root",
-            password: "",
-            database: "info_db"
-        });
-        
+        // console.log(arg);
+        var MongoClient = require('mongodb').MongoClient;
+        //var url = "mongodb+srv://b1812815:AIn59P3CRrQ1ASHe@web-b1812815.dtn9n.mongodb.net/web-b1812815?retryWrites=true&w=majority";
+        var url = "mongodb://localhost:27017/";
         var result_object = [];
 
-        con.connect(function (err) {
+        MongoClient.connect(url, function (err, db) {
             if (err) throw err;
-            if (mssv == ''){
-                 mssv = '%';
+
+            var dbo = db.db("web-b1812815");
+            var query = {
+                mssv: { $regex: mssv, $options: "i" },
+                name: { $regex: name, $options: "i" },
+                diachi: { $regex: tinh, $options: "i" }
             }
-            name_f = '%' + name + '%';
-            tinh_f = '%' + tinh + '%';
-            
-            var sql = 'SELECT * FROM student WHERE mssv LIKE ' + mysql.escape(mssv) 
-                    + 'and name LIKE ' + mysql.escape(name_f) 
-                    + 'and diachi LIKE ' + mysql.escape(tinh_f); 
-            con.query(sql, function (err, result) {
+            dbo.collection("student").find(query).toArray(function (err, result) {
                 if (err) throw err;
                 //console.log(result);
                 result.forEach(element => {
@@ -129,6 +112,7 @@ io.on('connection', (socket) => {
                 });
 
                 socket.emit("find_list", result_object);
+                db.close();
             });
         });
 

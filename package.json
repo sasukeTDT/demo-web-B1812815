@@ -5,6 +5,7 @@
   "main": "main_reg.js",
   "dependencies": {
     "express": "^4.17.1",
+    "mongodb": "^4.4.1",
     "mysql": "^2.18.1",
     "request": "^2.88.2",
     "socket.io": "^4.3.1"
