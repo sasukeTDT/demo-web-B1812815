@@ -45,7 +45,7 @@ io.on('connection', (socket) => {
 
         var MongoClient = require('mongodb').MongoClient;
         //var url = "mongodb+srv://b1812815:AIn59P3CRrQ1ASHe@web-b1812815.dtn9n.mongodb.net/web-b1812815?retryWrites=true&w=majority";
-        var url = "mongodb://localhost:27017/";
+        var url = "mongodb://localhost:27017/web-b1812815";
 
         MongoClient.connect(url, function (err, db) {
             if (err) throw err;
@@ -66,7 +66,7 @@ io.on('connection', (socket) => {
 
         var MongoClient = require('mongodb').MongoClient;
         //var url = "mongodb+srv://b1812815:AIn59P3CRrQ1ASHe@web-b1812815.dtn9n.mongodb.net/web-b1812815?retryWrites=true&w=majority";
-        var url = "mongodb://localhost:27017/";
+        var url = "mongodb://localhost:27017/web-b1812815";
         var result_object = [];
 
         MongoClient.connect(url, function (err, db) {
@@ -92,7 +92,7 @@ io.on('connection', (socket) => {
         // console.log(arg);
         var MongoClient = require('mongodb').MongoClient;
         //var url = "mongodb+srv://b1812815:AIn59P3CRrQ1ASHe@web-b1812815.dtn9n.mongodb.net/web-b1812815?retryWrites=true&w=majority";
-        var url = "mongodb://localhost:27017/";
+        var url = "mongodb://localhost:27017/web-b1812815";
         var result_object = [];
 
         MongoClient.connect(url, function (err, db) {
