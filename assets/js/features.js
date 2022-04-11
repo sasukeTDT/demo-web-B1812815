@@ -19,7 +19,7 @@ socket.on("student_list", (msg_object) => {
         + "<td>" + msg_object[i].diachi + "</td>"
         + "<td>" + msg_object[i].email+ "</td>"
         + '<td><button class="btn btn-primary" type="button" onclick="delete_info('
-        + msg_object[i].mssv + ')">Delete </button></td>'
+        +  "'" + msg_object[i].mssv + "'" + ')">Delete </button></td>'
         + "</tr>"
         data_str += row;
     }
