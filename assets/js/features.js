@@ -1,5 +1,9 @@
 const socket = io();
 
+function delete_info(mssv_de){
+    socket.emit("delete_info", mssv_de);
+}
+
 socket.emit("fetch_data","please!");
 
 socket.on("student_list", (msg_object) => {
@@ -14,8 +18,8 @@ socket.on("student_list", (msg_object) => {
         + "<td>" + msg_object[i].nganh + "</td>"
         + "<td>" + msg_object[i].diachi + "</td>"
         + "<td>" + msg_object[i].email+ "</td>"
-        + '<td><a class="btn btn-primary" href="../html/info/product'
-        + msg_object[i].mssv + '.html">View </a></td'
+        + '<td><button class="btn btn-primary" type="button" onclick="delete_info('
+        + msg_object[i].mssv + ')">Delete </button></td>'
         + "</tr>"
         data_str += row;
     }

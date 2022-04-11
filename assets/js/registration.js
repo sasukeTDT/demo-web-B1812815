@@ -18,6 +18,6 @@ function save_info(){
         "email":email_value
     };
     let info_str = JSON.stringify(info);
-   // document.getElementById("test_code").innerHTML = info_str;
+   
     socket.emit("save_info", info_str);
 }

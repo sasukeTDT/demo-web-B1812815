@@ -60,6 +60,29 @@ io.on('connection', (socket) => {
 
     });
 
+    //delete
+    socket.on("delete_info", (arg) => {
+        console.log(arg); // world
+
+        var MongoClient = require('mongodb').MongoClient;
+        //var url = "mongodb+srv://b1812815:AIn59P3CRrQ1ASHe@web-b1812815.dtn9n.mongodb.net/web-b1812815?retryWrites=true&w=majority";
+        var url = process.env.MONGODB_URI;;
+
+        MongoClient.connect(url, function(err, db) {
+            if (err) throw err;
+            var dbo = db.db("web-b1812815");
+            var mssv_de = arg.split('"') 
+            var myquery = {mssv: mssv_de[1]};
+            console.log(myquery.mssv);
+            dbo.collection("student").deleteOne(myquery, function(err, obj) {
+              if (err) throw err;
+              console.log("1 document deleted");
+              db.close();
+            });
+          });
+
+    });
+
     //hien thi danh sach sinh vien
     socket.on("fetch_data", (arg) => {
         console.log(arg);
@@ -104,6 +127,7 @@ io.on('connection', (socket) => {
                 name: { $regex: name, $options: "i" },
                 diachi: { $regex: tinh, $options: "i" }
             }
+            console.log(query.mssv);
             dbo.collection("student").find(query).toArray(function (err, result) {
                 if (err) throw err;
                 //console.log(result);
